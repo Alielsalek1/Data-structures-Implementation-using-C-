@@ -5,11 +5,10 @@ using namespace std;
 
 template<typename T>
 class Node {
-private:
+public:
     T data;
     Node *link;
-public:
-    Node(T data, Node<T>* link = NULL);
+    Node(T data, Node<T>* link = NULL) : data(data), link(link) {}
 };
 
 template<typename T>
@@ -17,8 +16,8 @@ class Singlist {
 private:
     Node<T>* head = NULL;
 public:
-    Singlist() {};
-    ~Singlist();
+    Singlist();
+//    ~Singlist();
     void insert_front(T data);
     void insert_back(T data);
     void pop_back();
@@ -27,9 +26,17 @@ public:
     int length();
     bool empty();
     void reverse();
-    Node<T> back();
-    Node<T> front();
-    bool count();
+    class Iterator {
+    private:
+        Node<T>* current;
+    public:
+        Iterator(Node<T>* start) : current(start) {}
+        T& operator*();
+        Iterator& operator++();
+        bool operator!=(const Iterator& other) const;
+    };
+    Iterator begin() { return Iterator(head); }
+    Iterator end() { return Iterator(nullptr); }
 };
 
 #endif
