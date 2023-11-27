@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "My_Implementation_for_some_Data_Structures",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "My_Implementation_for_some_Data_Structures::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-My_Implementation_for_some_Data_Structures-Debug-1ca26806b7866d1574c1.json",
+					"name" : "My_Implementation_for_some_Data_Structures",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/extras/Projects/Data Structures/My-Implementation-for-some-Data-Structures/cmake-build-debug",
+		"source" : "C:/extras/Projects/Data Structures/My-Implementation-for-some-Data-Structures"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}
