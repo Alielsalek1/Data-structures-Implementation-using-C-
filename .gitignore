@@ -1,32 +1,41 @@
-# Prerequisites
-*.d
+.idea/
 
-# Compiled Object files
-*.slo
-*.lo
+# Compiled binaries
+bin/
+out/
+
+# CMake build directory
+cmake-build-debug/
+cmake-build-release/
+
+# Compiled object files
 *.o
 *.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# Compiled libraries
 *.lib
+*.a
+*.dll
+*.so
 
 # Executables
 *.exe
 *.out
-*.app
+
+# macOS specific files
+.DS_Store
+
+# Visual Studio Code settings
+.vscode/
+
+# Eclipse settings
+.settings/
+.classpath
+.project
+
+# User-specific files
+*.iml
+*.ipr
+*.iws
+.idea/
+
