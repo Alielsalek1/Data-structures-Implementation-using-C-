@@ -3,12 +3,24 @@
 template <typename T>
 Singlist<T>::Singlist() {
     //constructing the list with the head equals to NULL as a significance for an empty list
-    this->head = NULL;
+    this->head = nullptr;
+}
+template <typename T>
+Singlist<T>::~Singlist() {
+    // first, we start by deleting the head after assigning an iterator
+    Node<T>* itr = this->head;
+    delete head;
+    while (itr != nullptr) {
+        // deleting every node as we advance
+        Node<T>* temp = itr;
+        itr = itr->link;
+        delete temp;
+    }
 }
 template <typename T>
 bool Singlist<T>::empty() {
-    // if the head is NULL this indicates that there are no data and the list is empty.
-    return (this->head == NULL);
+    // if the head is nullptr, this indicates that there are no data and the list is empty.
+    return (this->head == nullptr);
 }
 template <typename T>
 int Singlist<T>::length() {
@@ -19,8 +31,8 @@ int Singlist<T>::length() {
 }
 template <typename T>
 void Singlist<T>::insert_front(T data) {
-    // if the head is NULL it means that the list is empty.
-    if (this->head == NULL)
+    // if the head is nullptr it means that the list is empty.
+    if (this->head == nullptr)
         this->head = new Node<T>(data);
     else {
         /* else we are constructing a new node, making its link the head,
@@ -42,6 +54,36 @@ void Singlist<T>::insert_back(T data) {
             end = end->link;
         end->link = new_node;
     }
+}
+template <typename T>
+void Singlist<T>::pop_back() {
+    if (this->head == nullptr) throw runtime_error("cannot delete from an empty list");
+    /* iterate till you have 2 nodes the last and the last - 1
+       now we assign the linker for the last - 1 to NULL and delete the last */
+    Node<T>* last = this->head;
+    Node<T>* before_last = this->head;
+    while (last->link != nullptr) {
+        if (last != this->head) before_last = before_last->link;
+        last = last->link;
+    }
+    /* if you have only 1 node, then you delete it
+       and assign the head to NULL */
+    if (last == this->head) {
+        delete this->head;
+        head = nullptr;
+    } else {
+        before_last->link = nullptr;
+        delete last;
+    }
+}
+template <typename T>
+void Singlist<T>::pop_front() {
+    if (this->head == nullptr) throw runtime_error("cannot delete from an empty list");
+    /* declare a new head which is the link of the head node
+       then we delete the head, and we assign it to the new head a */
+    Node<T>* new_head = this->head->link;
+    delete this->head;
+    this->head = new_head;
 }
 // overloading iterators to be able to loop on the list
 /* in the context of iteration on the single linked list,

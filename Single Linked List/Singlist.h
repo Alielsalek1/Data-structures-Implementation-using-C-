@@ -8,16 +8,16 @@ class Node {
 public:
     T data;
     Node *link;
-    Node(T data, Node<T>* link = NULL) : data(data), link(link) {}
+    Node(T data, Node<T>* link = nullptr) : data(data), link(link) {}
 };
 
 template<typename T>
 class Singlist {
 private:
-    Node<T>* head = NULL;
+    Node<T>* head = nullptr;
 public:
     Singlist();
-//    ~Singlist();
+    ~Singlist();
     void insert_front(T data);
     void insert_back(T data);
     void pop_back();
