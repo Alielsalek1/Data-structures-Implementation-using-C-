@@ -7,15 +7,7 @@ Singlist<T>::Singlist() {
 }
 template <typename T>
 Singlist<T>::~Singlist() {
-    // first, we start by deleting the head after assigning an iterator
-    Node<T>* itr = this->head;
-    delete head;
-    while (itr != nullptr) {
-        // deleting every node as we advance
-        Node<T>* temp = itr;
-        itr = itr->link;
-        delete temp;
-    }
+    this->clear();
 }
 template <typename T>
 bool Singlist<T>::empty() {
@@ -28,6 +20,18 @@ int Singlist<T>::length() {
     int cnt = 0;
     for (const auto &i : *this) cnt++;
     return cnt;
+}
+template <typename T>
+void Singlist<T>::clear() {
+    if (this->head == nullptr) return;
+    Node<T>* itr = this->head;
+    while (itr != nullptr) {
+        // deleting every node as we advance
+        Node<T>* temp = itr;
+        itr = itr->link;
+        delete temp;
+    }
+    this->head = nullptr;
 }
 template <typename T>
 void Singlist<T>::insert_front(T data) {
@@ -45,12 +49,12 @@ template <typename T>
 void Singlist<T>::insert_back(T data) {
     Node<T>* new_node = new Node<T>(data); // the new node to add
     // if the head is NULL, which means the list is empty just add the node without linkers
-    if (this->head == NULL)
+    if (this->head == nullptr)
         this->head = new_node;
     else {
         // iterate till you reach the end node and modify its link to the new node
         Node<T>* end = this->head;
-        while (end->link != NULL)
+        while (end->link != nullptr)
             end = end->link;
         end->link = new_node;
     }
@@ -84,6 +88,33 @@ void Singlist<T>::pop_front() {
     Node<T>* new_head = this->head->link;
     delete this->head;
     this->head = new_head;
+}
+template <typename T>
+void Singlist<T>::reverse() {
+    if (this->head == nullptr) throw runtime_error("cannot reverse an empty list");
+    if (this->head->link != nullptr) {
+        /* Having three iterators current_node, next_node, previous_node
+           updating the next, reversing the link,
+           then we assign previous_node to current_node and current_node to the next_node */
+        Node<T>* prev = nullptr;
+        Node<T>* next = this->head;
+        Node<T>* curr = this->head;
+        while (curr != nullptr) {
+            next = next->link;
+            curr->link = prev;
+            prev = curr;
+            curr = next;
+        }
+        this->head = prev;
+    }
+}
+template <typename T>
+Singlist<T>& Singlist<T>::operator=(Singlist<T> &other) {
+    this->clear();
+    // copy elements from the other list
+    for (const auto &i : other)
+        this->insert_back(i);
+    return *this;
 }
 // overloading iterators to be able to loop on the list
 /* in the context of iteration on the single linked list,

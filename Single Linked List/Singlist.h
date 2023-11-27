@@ -22,10 +22,11 @@ public:
     void insert_back(T data);
     void pop_back();
     void pop_front();
-    void remove(T req);
+    void clear();
     int length();
     bool empty();
     void reverse();
+    Singlist& operator=(Singlist<T> &other);
     class Iterator {
     private:
         Node<T>* current;
