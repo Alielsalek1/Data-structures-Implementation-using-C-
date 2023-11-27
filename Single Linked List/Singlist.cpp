@@ -31,10 +31,12 @@ void Singlist<T>::insert_front(T data) {
 }
 template <typename T>
 void Singlist<T>::insert_back(T data) {
-    Node<T>* new_node = new Node<T>(data);
+    Node<T>* new_node = new Node<T>(data); // the new node to add
+    // if the head is NULL, which means the list is empty just add the node without linkers
     if (this->head == NULL)
         this->head = new_node;
     else {
+        // iterate till you reach the end node and modify its link to the new node
         Node<T>* end = this->head;
         while (end->link != NULL)
             end = end->link;
@@ -57,6 +59,7 @@ T& Singlist<T>::Iterator::operator*() {
 }
 template <typename T>
 typename Singlist<T>::Iterator& Singlist<T>::Iterator::operator++() {
+    // going to the next node by making the current node the link
     this->current = this->current->link;
     return *this;
 }
