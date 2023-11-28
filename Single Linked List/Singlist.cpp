@@ -60,18 +60,51 @@ void Singlist<T>::insert_back(T data) {
     }
 }
 template <typename T>
+void Singlist<T>::insert_at(T data, int position) {
+    if (!position) return void(this->insert_front(data));
+    /* iterating with 2 iterators, one lags the other by one
+       until the itr reaches the required position */
+    Node<T>* itr = this->head;
+    Node<T>* prev = nullptr;
+    while (itr != nullptr && position--) {
+        prev = itr;
+        itr = itr->link;
+    }
+    /* inserting the data between the prev and itr,
+       updating the prev link and then the new_node link to point to the itr*/
+    Node<T>* new_node = new Node<T>(data);
+    prev->link = new_node;
+    new_node->link = itr;
+}
+template <typename T>
+void Singlist<T>::remove_at(int position) {
+    // if we are deleting the first node, call pop_front
+    if (!position) return void(this->pop_front());
+    /* iterating with 2 iterators, one lags the other by one
+       until the itr reaches the required position */
+    Node<T>* itr = this->head;
+    Node<T>* prev = nullptr;
+    while (itr != nullptr && position--) {
+        prev = itr;
+        itr = itr->link;
+    }
+    /* updating the prev link and deleting the node */
+    prev->link = itr->link;
+    delete itr;
+}
+template <typename T>
 void Singlist<T>::pop_back() {
     if (this->head == nullptr) throw runtime_error("cannot delete from an empty list");
     /* iterate till you have 2 nodes the last and the last - 1
-       now we assign the linker for the last - 1 to NULL and delete the last */
+       now we assign the linker for the last - 1 to nullptr and delete the last */
     Node<T>* last = this->head;
-    Node<T>* before_last = this->head;
+    Node<T>* before_last = nullptr;
     while (last->link != nullptr) {
-        if (last != this->head) before_last = before_last->link;
+        before_last = last;
         last = last->link;
     }
     /* if you have only 1 node, then you delete it
-       and assign the head to NULL */
+       and assign the head to nullptr */
     if (last == this->head) {
         delete this->head;
         head = nullptr;

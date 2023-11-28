@@ -30,5 +30,12 @@ int main() {
     for (auto i : temp) cout << i << " ";
     cout << "\n";
     for (auto i : lst) cout << i << " ";
+    cout << "\n\n";
+    lst.insert_at(5, 2);
+    temp.remove_at(3);
+    cout << "\n";
+    for (auto i : lst) cout << i << " ";
+    cout << "\n";
+    for (auto i : temp) cout << i << " ";
     return 0;
 }

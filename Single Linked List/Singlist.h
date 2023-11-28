@@ -22,6 +22,8 @@ public:
     void insert_back(T data);
     void pop_back();
     void pop_front();
+    void insert_at(T data, int position);
+    void remove_at(int position);
     void clear();
     int length();
     bool empty();
