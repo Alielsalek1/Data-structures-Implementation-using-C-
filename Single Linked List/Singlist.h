@@ -4,16 +4,15 @@
 using namespace std;
 
 template<typename T>
-class Node {
-public:
-    T data;
-    Node *link;
-    Node(T data, Node<T>* link = nullptr) : data(data), link(link) {}
-};
-
-template<typename T>
 class Singlist {
 private:
+    template <typename X>
+    class Node {
+    public:
+        T data;
+        Node *link;
+        Node(T data, Node<X>* link = nullptr) : data(data), link(link) {}
+    };
     Node<T>* head = nullptr;
 public:
     Singlist();
