@@ -1,4 +1,3 @@
-#include <bits/stdc++.h>
 #include "BST.cpp"
 using namespace std;
 
@@ -12,7 +11,13 @@ int main() {
     bst.insert(7);
     bst.insert(20);
     bst.insert(25);
-    bst.remove(10);
 
+    BST<int>::Iterator it = bst.begin(BST<int>::traversal_pre_order);
+
+    // Iterate over the BST using the iterator
+    while (it != bst.end()) {
+        cout << *it << " ";
+        ++it;
+    }
     return 0;
 }

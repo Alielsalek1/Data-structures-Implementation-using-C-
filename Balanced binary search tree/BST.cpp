@@ -106,3 +106,4 @@ void BST<T>::remove(T val) {
     else
         remove_with_children(child);
 }
+
