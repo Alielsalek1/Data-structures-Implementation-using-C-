@@ -1,5 +1,6 @@
 #include "BST.h"
 
+// Basic BST functions
 template<typename T>
 typename BST<T>::template Node<T> *BST<T>::get_parent(T val) {
     // We cannot get a parent for the root node
@@ -105,5 +106,71 @@ void BST<T>::remove(T val) {
         remove_left(par, child, val);
     else
         remove_with_children(child);
+}
+
+// Iterator Functions
+template<typename T>
+BST<T>::Iterator::Iterator(BST<T>& bst, std::function<void(BST<T>&, Node<T>*, std::deque<T>&)> func) : bst(bst), traversal_function(func) {
+    if (bst.root != nullptr) traversal_function(bst, bst.root, nodes);
+}
+template<typename T>
+T& BST<T>::Iterator::operator*() {
+    return nodes.front();
+}
+template<typename T>
+typename BST<T>::Iterator& BST<T>::Iterator::operator++() {
+    if (!nodes.empty()) nodes.pop_front();
+    return *this;
+}
+template<typename T>
+bool BST<T>::Iterator::operator!=(const Iterator& other) {
+    return !nodes.empty() || !other.nodes.empty();
+}
+template<typename T>
+typename BST<T>::Iterator BST<T>::begin(std::function<void(BST<T>&, Node<T>*, std::deque<T>&)> traversal_function) {
+    return Iterator(*this, traversal_function);
+}
+template<typename T>
+typename BST<T>::Iterator BST<T>::end() {
+    return Iterator(*this, traversal_empty);
+}
+
+// types of BST traversals
+template<typename T>
+void BST<T>::traversal_in_order(BST<T>& bst, Node<T>* curr, std::deque<T>& nodes) {
+    if (curr == nullptr) return;
+    traversal_in_order(bst, curr->left, nodes);
+    nodes.push_back(curr->val);
+    traversal_in_order(bst, curr->right, nodes);
+}
+template<typename T>
+void BST<T>::traversal_pre_order(BST<T>& bst, Node<T>* curr, std::deque<T>& nodes) {
+    if (curr == nullptr) return;
+    nodes.push_back(curr->val);
+    traversal_pre_order(bst, curr->left, nodes);
+    traversal_pre_order(bst, curr->right, nodes);
+}
+template<typename T>
+void BST<T>::traversal_post_order(BST<T>& bst, Node<T>* curr, std::deque<T>& nodes) {
+    if (curr == nullptr) return;
+    traversal_post_order(bst, curr->left, nodes);
+    traversal_post_order(bst, curr->right, nodes);
+    nodes.push_back(curr->val);
+}
+template<typename T>
+void BST<T>::traversal_level_order(BST<T>& bst, Node<T>* curr, std::deque<T>& nodes) {
+    if (curr == nullptr) return;
+    // Traditional BFS Algorithm
+    queue<Node<T>*> q;
+    q.push(curr);
+    while (!q.empty()) {
+        Node<T>* front = q.front();
+        q.pop();
+        nodes.push_back(front->val);
+        if (front->left != nullptr) {
+            q.push(front->left);
+        }
+        if (front->right != nullptr) q.push(front->right);
+    }
 }
 

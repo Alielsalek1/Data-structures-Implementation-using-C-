@@ -11,13 +11,18 @@ int main() {
     bst.insert(7);
     bst.insert(20);
     bst.insert(25);
+    bst.remove(25);
 
-    BST<int>::Iterator it = bst.begin(BST<int>::traversal_pre_order);
+    BST<int>::Iterator it = bst.begin();
 
     // Iterate over the BST using the iterator
     while (it != bst.end()) {
         cout << *it << " ";
         ++it;
+    }
+    cout << "\n";
+    for (auto i : bst) {
+        cout << i << " ";
     }
     return 0;
 }
