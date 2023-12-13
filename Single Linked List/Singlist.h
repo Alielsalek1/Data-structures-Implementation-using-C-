@@ -14,8 +14,8 @@ private:
         Node(T data, Node<X>* link = nullptr) : data(data), link(link) {}
     };
     Node<T>* head = nullptr;
+    int size = 0;
 public:
-    Singlist();
     ~Singlist();
     void insert_front(T data);
     void insert_back(T data);

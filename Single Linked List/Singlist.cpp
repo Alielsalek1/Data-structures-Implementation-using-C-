@@ -1,11 +1,6 @@
 #include "Singlist.h"
 
 template <typename T>
-Singlist<T>::Singlist() {
-    //constructing the list with the head equals to NULL as a significance for an empty list
-    this->head = nullptr;
-}
-template <typename T>
 Singlist<T>::~Singlist() {
     this->clear();
 }
@@ -16,10 +11,7 @@ bool Singlist<T>::empty() {
 }
 template <typename T>
 int Singlist<T>::length() {
-    // iterating on the list and adding to the counter every time we find an element
-    int cnt = 0;
-    for (const auto &i : *this) cnt++;
-    return cnt;
+    return size;
 }
 template <typename T>
 void Singlist<T>::clear() {
@@ -32,6 +24,7 @@ void Singlist<T>::clear() {
         delete temp;
     }
     this->head = nullptr;
+    size = 0;
 }
 template <typename T>
 void Singlist<T>::insert_front(T data) {
@@ -44,6 +37,7 @@ void Singlist<T>::insert_front(T data) {
         Node<T>* new_node = new Node<T>(data, this->head);
         this->head = new_node;
     }
+    size++;
 }
 template <typename T>
 void Singlist<T>::insert_back(T data) {
@@ -58,6 +52,7 @@ void Singlist<T>::insert_back(T data) {
             end = end->link;
         end->link = new_node;
     }
+    size++;
 }
 template <typename T>
 void Singlist<T>::insert_at(T data, int position) {
@@ -75,6 +70,7 @@ void Singlist<T>::insert_at(T data, int position) {
     Node<T>* new_node = new Node<T>(data);
     prev->link = new_node;
     new_node->link = itr;
+    size++;
 }
 template <typename T>
 void Singlist<T>::remove_at(int position) {
@@ -91,6 +87,7 @@ void Singlist<T>::remove_at(int position) {
     /* updating the prev link and deleting the node */
     prev->link = itr->link;
     delete itr;
+    size--;
 }
 template <typename T>
 void Singlist<T>::pop_back() {
@@ -112,6 +109,7 @@ void Singlist<T>::pop_back() {
         before_last->link = nullptr;
         delete last;
     }
+    size--;
 }
 template <typename T>
 void Singlist<T>::pop_front() {
@@ -121,6 +119,7 @@ void Singlist<T>::pop_front() {
     Node<T>* new_head = this->head->link;
     delete this->head;
     this->head = new_head;
+    size--;
 }
 template <typename T>
 void Singlist<T>::reverse() {
