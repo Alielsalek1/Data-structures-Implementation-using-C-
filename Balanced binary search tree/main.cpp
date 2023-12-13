@@ -7,11 +7,12 @@ int main() {
     bst.insert(3);
     bst.insert(1);
     bst.insert(5);
+    bst.clear();
     bst.insert(10);
     bst.insert(7);
     bst.insert(20);
     bst.insert(25);
-    bst.remove(25);
+    bst.remove(7);
     cout << bst.size() << "\n";
     BST<int>::Iterator it = bst.begin();
 

@@ -2,6 +2,26 @@
 
 // Basic BST functions
 template<typename T>
+BST<T>::~BST() {
+    this->clear();
+}
+template<typename T>
+void BST<T>::clear() {
+    if (root == nullptr) return;
+    // Traditional BFS Algorithm
+    queue<Node<T>*> q;
+    q.push(root);
+    while (!q.empty()) {
+        Node<T>* front = q.front();
+        q.pop();
+        if (front->left != nullptr) q.push(front->left);
+        if (front->right != nullptr) q.push(front->right);
+        delete front;
+    }
+    root = nullptr;
+    num_nodes = 0;
+}
+template<typename T>
 int BST<T>::size() {
     return this->num_nodes;
 }

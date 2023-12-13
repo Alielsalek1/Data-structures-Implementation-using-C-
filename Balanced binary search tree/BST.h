@@ -25,11 +25,13 @@ private:
     void remove_no_children(Node<T> *&par, Node<T> *&child, T val);
     void remove_with_children(Node<T> *&curr);
 public:
+    ~BST();
     // Basic functions
     void insert(T val);
     void remove(T val);
     bool find(T val);
     int size();
+    void clear();
     // Iterators
     class Iterator {
     private:
