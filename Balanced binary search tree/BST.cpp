@@ -2,9 +2,13 @@
 
 // Basic BST functions
 template<typename T>
+int BST<T>::size() {
+    return this->num_nodes;
+}
+template<typename T>
 typename BST<T>::template Node<T> *BST<T>::get_parent(T val) {
     // We cannot get a parent for the root node
-    if (val == this->root->val || this->root == nullptr) return nullptr;
+    if (this->root == nullptr || val == this->root->val) return nullptr;
     /* as we iterate if we found a child which is equal to the value, we return its parent
        else if the child is a nullptr we return the parent for insert */
     Node<T> *itr = this->root;
@@ -25,15 +29,19 @@ bool BST<T>::find(T val) {
     // if the parent has a child with the required value, return true
     Node<T> *par = this->get_parent(val);
     // if a node has no parent, this means it might be the root or nonexistent
-    if (par == nullptr) return (root->val == val);
-    return (par->left != nullptr && par->left->val == val || par->right->val == val);
+
+    if (par == nullptr) return (root != nullptr && root->val == val);
+    return ((par->left != nullptr && par->left->val == val) || (par->right != nullptr && par->right->val == val));
 }
 template<typename T>
 void BST<T>::insert(T val) {
+    // as we do not allow duplicates, we return if we found the value
+    if (this->find(val)) return;
+    this->num_nodes++;
     Node<T> *new_node = new Node(val);
     // if there is no root, assign the new node to be the root
     if (this->root == nullptr) return void(this->root = new_node);
-    // as we do not allow duplicates, we just ignore it
+    // get the parent and assign the value to it
     Node<T> *par = this->get_parent(val);
     if (val > par->val) par->right = new_node;
     else if (val < par->val) par->left = new_node;
@@ -92,6 +100,7 @@ template<typename T>
 void BST<T>::remove(T val) {
     // if the node isn't there, then there is no operation to make
     if (!this->find(val)) return;
+    this->num_nodes--;
     Node<T> *par = this->get_parent(val);
     Node<T> *child;
     // if the parent is a nullptr, this means the current node is the root node

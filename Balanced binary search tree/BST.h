@@ -16,6 +16,7 @@ private:
         Node(X val) : val(val) {}
     };
     Node<T> *root = nullptr;
+    int num_nodes = 0;
     // helper functions
     Node<T> *get_parent(T val);
     Node<T> *get_left_most(Node<T>* curr);
@@ -28,6 +29,7 @@ public:
     void insert(T val);
     void remove(T val);
     bool find(T val);
+    int size();
     // Iterators
     class Iterator {
     private:
