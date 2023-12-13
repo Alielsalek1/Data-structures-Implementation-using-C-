@@ -173,4 +173,3 @@ void BST<T>::traversal_level_order(BST<T>& bst, Node<T>* curr, std::deque<T>& no
         if (front->right != nullptr) q.push(front->right);
     }
 }
-
