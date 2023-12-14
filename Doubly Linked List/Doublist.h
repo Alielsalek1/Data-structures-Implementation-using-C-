@@ -31,7 +31,6 @@ public:
     int length();
     bool empty();
     void reverse();
-    Doublist& operator=(Doublist<T> &other);
     class Iterator {
     private:
         Node<T>* curr;
