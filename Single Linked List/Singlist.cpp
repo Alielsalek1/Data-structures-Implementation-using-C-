@@ -56,6 +56,8 @@ void Singlist<T>::insert_back(T data) {
 }
 template <typename T>
 void Singlist<T>::insert_at(T data, int position) {
+    if (position > this->size || position < 0) throw runtime_error("cannot remove at this position");
+
     if (!position) return void(this->insert_front(data));
     /* iterating with 2 iterators, one lags the other by one
        until the itr reaches the required position */
@@ -74,6 +76,7 @@ void Singlist<T>::insert_at(T data, int position) {
 }
 template <typename T>
 void Singlist<T>::remove_at(int position) {
+    if (position >= this->size || position < 0) throw runtime_error("cannot remove at this position");
     // if we are deleting the first node, call pop_front
     if (!position) return void(this->pop_front());
     /* iterating with 2 iterators, one lags the other by one
