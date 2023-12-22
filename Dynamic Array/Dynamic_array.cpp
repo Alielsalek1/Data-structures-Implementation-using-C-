@@ -34,7 +34,7 @@ void Dynamic_array<T>::pop_back() {
 }
 template<typename T>
 void Dynamic_array<T>::reverse() {
-    int l = 0, r = all_size - 1;
+    int l = 0, r = last - 1;
     while (l < r) {
         swap(data[l], data[r]);
         l++, r--;

@@ -25,4 +25,6 @@ public:
     T& operator [](int index);
 };
 
+#include "Dynamic_array.cpp"
+
 #endif
