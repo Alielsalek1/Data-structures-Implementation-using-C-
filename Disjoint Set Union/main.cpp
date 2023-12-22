@@ -1,4 +1,4 @@
-#include "DSU.cpp"
+#include "DSU.h"
 
 int main() {
     DSU<int> dsu(10);

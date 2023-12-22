@@ -58,4 +58,6 @@ public:
     static void traversal_empty(BST<T>& bst, Node<T>* curr, deque<T>& nodes) {}
 };
 
+#include "BST.cpp"
+
 #endif

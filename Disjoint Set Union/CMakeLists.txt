@@ -3,4 +3,4 @@ project(DSU)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DSU main.cpp DSU.cpp)
+add_executable(DSU main.cpp DSU.h)

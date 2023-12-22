@@ -68,4 +68,7 @@ public:
     static void traversal_level_order(AVL<T>& bst, Node<T>* curr, deque<T>& nodes);
     static void traversal_empty(AVL<T>& bst, Node<T>* curr, deque<T>& nodes) {}
 };
+
+#include "AVL.cpp"
+
 #endif

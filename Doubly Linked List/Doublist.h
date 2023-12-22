@@ -44,4 +44,6 @@ public:
     Iterator end();
 };
 
+#include "Doublist.cpp"
+
 #endif

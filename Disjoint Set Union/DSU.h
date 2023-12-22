@@ -16,6 +16,8 @@ public:
     void unite(T x, T y);
 };
 
+#include "DSU.cpp"
+
 #endif
 // Most Important Usage for the DSU Data Structure (Minimum Spanning Tree)
 
