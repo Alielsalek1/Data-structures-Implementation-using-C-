@@ -70,7 +70,7 @@ void Doublist<T>::pop_front() {
 }
 template <typename T>
 void Doublist<T>::insert_at(T val, int pos) {
-    if (pos > this->length()) throw runtime_error("Cannot insert at this position");
+    if (pos > this->length() || pos < 0) throw runtime_error("Cannot insert at this position");
     if (pos == 0) return void(this->insert_front(val));
     if (pos == this->length()) return void(this->insert_back(val));
     // iterating with 2 iterators till position and inserting the Node
@@ -88,7 +88,7 @@ void Doublist<T>::insert_at(T val, int pos) {
 }
 template <typename T>
 void Doublist<T>::remove_at(int pos) {
-    if (pos >= this->length()) throw runtime_error("Cannot insert at this position");
+    if (pos >= this->length() || pos < 0) throw runtime_error("Cannot insert at this position");
     if (pos == 0) return void(this->pop_front());
     else if (pos == this->length() - 1) return void(this->pop_back());
     // we will 2 iterators 1 is the back of the node and the other one is its front
