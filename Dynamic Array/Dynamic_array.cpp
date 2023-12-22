@@ -16,6 +16,8 @@ void Dynamic_array<T>::clear() {
 }
 template<typename T>
 void Dynamic_array<T>::extend_array() {
+    /* copying the data from the old array to the new one,
+       then we delete the old data and assign the data pointer to the new extended array */
     T* new_data = new T[all_size + 1000];
     for (int i = 0; i < all_size; ++i) new_data[i] = data[i];
     delete[] data;
